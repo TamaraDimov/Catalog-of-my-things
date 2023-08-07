@@ -1,10 +1,12 @@
 class Item
-  attr_accessor :id, :publish_date, :archived
+  attr_accessor :publish_date, :archived, :authors
+  attr_reader :id
 
   def initialize(id, publish_date, archived)
-    @id = id
+    @id = Random.rand(1..1000) # Guys, I have modified because we need to have an id value generated randomly for each item created
     @publish_date = publish_date
     @archived = archived
+    @authors = []
   end
 
   def can_be_archived?
@@ -14,4 +16,10 @@ class Item
   def move_to_archive
     @archived = true if can_be_archived? == true
   end
+
+  def add_author(author)
+    @authors = author
+    author.items.push(self) unless author.items.include?(self)
+  end
+
 end
