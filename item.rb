@@ -18,8 +18,7 @@ class Item
   end
 
   def add_author(author)
-    @authors = author
-    author.items.push(self) unless author.items.include?(self)
+    @authors << author
+    author.items << self unless author.items.include?(self)
   end
-
 end

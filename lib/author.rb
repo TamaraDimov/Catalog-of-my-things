@@ -1,7 +1,7 @@
 require_relative '../item'
 
 class Author< Item
-    attr_accessor :first_name, :last_name
+    attr_accessor :first_name, :last_name, :items
     attr_reader :id
   
     def initialize(first_name, last_name)
