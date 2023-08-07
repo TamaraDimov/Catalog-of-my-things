@@ -3,7 +3,7 @@ class Item
   attr_reader :id
 
   def initialize(publish_date, archived: false)
-    @id = Random.rand(1..1000) # Guys, I have modified id because we need to have an id value generated randomly for each item created
+    @id = Random.rand(1..1000) # Guys, modified id because we need to have an id generated here
     @publish_date = publish_date
     @archived = archived
     @authors = []

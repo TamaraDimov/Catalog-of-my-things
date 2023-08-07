@@ -45,5 +45,4 @@ describe Game do
       expect(game.can_be_archived?).to be false
     end
   end
-
 end
