@@ -115,6 +115,18 @@
 - LinkedIn: [Tamara Dimov](https://www.linkedin.com/in/tamara-dimov-b85139a2/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+👤 **Kifle Haile**
+
+- GitHub: [@githubhandle](https://github.com/kifle23)
+- Twitter: [@twitterhandle](https://twitter.com/KifleHaile12)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/kifle-haile)
+
+👤 **Nasirkhan294**
+
+- GitHub: [Nasirkhan294](https://github.com/Nasirkhan294)
+- Twitter: [NasirMa35888225](https://twitter.com/NasirMa35888225)
+- LinkedIn: [nasirmahd](https://www.linkedin.com/in/nasirmahd/)
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] New tests and methods
