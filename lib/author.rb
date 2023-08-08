@@ -12,6 +12,14 @@ class Author < Item
     @items = []
   end
 
+  def to_h
+    {
+      first_name: @first_name,
+      last_name: @last_name,
+      items: @items.map(&:to_h)
+    }
+  end
+
   def add_item(item)
     @items << item
     item.add_author(self)
