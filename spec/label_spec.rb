@@ -7,7 +7,7 @@ describe Label do
   let(:label_title) { 'Test Label' }
   let(:label_color) { 'blue' }
   let(:label_items) { [] }
-  let(:label) { Label.new(label_id, label_title, label_color, label_items) }
+  let(:label) { Label.new(label_id, label_title, label_color) }
 
   describe '#initialize' do
     it 'sets the id, title, color, and initializes items' do
