@@ -7,7 +7,6 @@ class GameCreator
   end
 
   def create_game
-    # title = read_game_title_from_user_input
     publish_date = read_game_published_date_from_user_input
     multiplayer = read_multiplayer_from_user_input
     last_played_at = read_last_played_at_from_user_input
@@ -22,11 +21,6 @@ class GameCreator
     print 'Publish date (YYYY-MM-DD): '
     publish_date_input = gets.chomp
     publish_date = Date.parse(publish_date_input)    
-  end
-
-  def read_game_title_from_user_input
-    print 'Title: '
-    gets.chomp
   end
 
   def read_multiplayer_from_user_input
