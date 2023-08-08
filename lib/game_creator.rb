@@ -1,11 +1,13 @@
 require_relative 'game'
 require_relative 'author'
+require_relative '../item'
 require 'date'
 
 class GameCreator
   def initialize(games, authors)
     @games = games
     @authors = authors
+    @items = []
   end
 
   def create_game
@@ -17,8 +19,10 @@ class GameCreator
 
     game = create_new_game(publish_date, multiplayer, last_played_at)
     puts "Created game '(Publishdate: #{game.publish_date},Multiplayer: #{game.multiplayer}, Last played at: #{game.last_played_at})."
-    author = create_new_author(first_name, last_name)
+    items=create_item(publish_date)
+    author = create_new_author(first_name, last_name, items)
     puts "Created author '#{author.full_name}' (ID: #{author.id})."
+    
   rescue ArgumentError => e
     puts "Error: #{e.message}"
   end
@@ -30,9 +34,14 @@ class GameCreator
   end
 
   def read_multiplayer_from_user_input
-    print 'Multiplayer (true/false): '
+    print 'Multiplayer (y/n): '
     multiplayer_input = gets.chomp.downcase
-    multiplayer_input == 'true'
+    case multiplayer_input
+    when 'y' || 'Y'
+      multiplayer_input = true
+    when 'n' || 'N'
+      multiplayer_input = false
+    end
   end
 
   def read_last_played_at_from_user_input
@@ -47,6 +56,12 @@ class GameCreator
     game
   end
 
+  def create_item(publish_date)
+    items = Item.new(publish_date)
+    @items << items
+    items
+  end
+
   def read_first_name_from_user_input
     print 'First Name: '
     gets.chomp
@@ -57,8 +72,8 @@ class GameCreator
     gets.chomp
   end
 
-  def create_new_author(first_name, last_name)
-    author = Author.new(first_name, last_name)
+  def create_new_author(first_name, last_name, items)
+    author = Author.new(first_name, last_name, items)
     @authors << author
     author
   end
