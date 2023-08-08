@@ -1,5 +1,5 @@
 class Item
-  attr_accessor :publish_date, :archived, :authors
+  attr_accessor :publish_date, :archived, :authors, :genre
   attr_reader :id
 
   def initialize(publish_date, archived: false)
@@ -7,6 +7,7 @@ class Item
     @publish_date = publish_date
     @archived = archived
     @authors = []
+    @genre = nil
   end
 
   def can_be_archived?
