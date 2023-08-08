@@ -1,4 +1,6 @@
-require_relative '../label' # Update the path to the Label class file
+# spec/label_spec.rb
+require_relative '../label'
+require_relative '../item'
 
 describe Label do
   let(:label_id) { 1 }

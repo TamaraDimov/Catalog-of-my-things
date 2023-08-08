@@ -1,10 +1,9 @@
 require_relative 'item'
 
-class Label < Item
+class Label
   attr_accessor :id, :title, :color, :items
 
   def initialize(id, title, color, _items)
-    super()
     @id = id
     @title = title
     @color = color
