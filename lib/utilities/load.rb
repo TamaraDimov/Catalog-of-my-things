@@ -14,7 +14,8 @@ class Load
   private
 
   def load_games_from_json(data)
-    Game.new(data['publish_date'], multiplayer: data['multiplayer'], last_played_at: data['last_played_at'], id: data['id'])
+    Game.new(data['publish_date'], multiplayer: data['multiplayer'], last_played_at: data['last_played_at'],
+                                   id: data['id'])
   end
 
   def load_authors_from_json(data)

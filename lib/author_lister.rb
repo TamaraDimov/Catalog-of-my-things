@@ -11,7 +11,8 @@ class AuthorLister
       puts 'No authors available.'
     else
       @authors.each do |author|
-        puts "ID:\"#{author.id}\",First name:\"#{author.first_name}\", Last name:\"#{author.last_name}\", Item ID:\"#{author.items.id}\""
+        puts "ID: \"#{author.id}\", First name: \"#{author.first_name}\", " \
+             "Last name: \"#{author.last_name}\", Item ID: \"#{author.items.id}\""
       end
     end
   end

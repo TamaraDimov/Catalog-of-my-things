@@ -17,9 +17,8 @@ class App
     @games_lister = GameLister.new(@games)
     @authors_lister = AuthorLister.new(@authors)
     @games_creator = GameCreator.new(@games, @authors)
-    
   end
-  
+
   def list_all_books; end
 
   def list_all_music_albums; end
@@ -53,5 +52,4 @@ class App
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
   end
-
 end

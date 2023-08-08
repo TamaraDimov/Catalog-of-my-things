@@ -18,11 +18,11 @@ class GameCreator
     last_name = read_last_name_from_user_input
 
     game = create_new_game(publish_date, multiplayer, last_played_at)
-    puts "Created game '(Publishdate: #{game.publish_date},Multiplayer: #{game.multiplayer}, Last played at: #{game.last_played_at})."
-    items=create_item(publish_date)
+    puts "Created game '(Publish date: #{game.publish_date}, " \
+         "Multiplayer: #{game.multiplayer}, Last played at: #{game.last_played_at})."
+    items = create_item(publish_date)
     author = create_new_author(first_name, last_name, items)
     puts "Created author '#{author.full_name}' (ID: #{author.id})."
-    
   rescue ArgumentError => e
     puts "Error: #{e.message}"
   end
@@ -30,7 +30,7 @@ class GameCreator
   def read_game_published_date_from_user_input
     print 'Publish date (YYYY-MM-DD): '
     publish_date_input = gets.chomp
-    publish_date = Date.parse(publish_date_input)    
+    Date.parse(publish_date_input)
   end
 
   def read_multiplayer_from_user_input
@@ -42,6 +42,7 @@ class GameCreator
     when 'n' || 'N'
       multiplayer_input = false
     end
+    multiplayer_input
   end
 
   def read_last_played_at_from_user_input
