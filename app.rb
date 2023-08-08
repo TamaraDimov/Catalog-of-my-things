@@ -1,5 +1,7 @@
 require_relative 'lib/utilities/save'
+require_relative 'lib/game_creator'
 require 'json'
+require 'fileutils'
 
 class App
   GAMES_FILE = './data/games.json'.freeze
@@ -8,8 +10,8 @@ class App
   def initialize
     @games = []
     @authors = []
-    @games_creator = GamesCreator.new(@games)
-    @authors_creator = AuthorsCreator.new(@authors)    
+    @games_creator = GameCreator.new(@games)
+    # @authors_creator = AuthorsCreator.new(@authors)    
   end
   
   def list_all_books; end
@@ -28,9 +30,9 @@ class App
 
   def add_a_music_album; end
 
-  def add_a_game; end
-
-  private
+  def add_a_game
+    @games_creator.create_game
+  end
 
   def save_data
     Save.new(@games.map(&:to_h), GAMES_FILE).execute

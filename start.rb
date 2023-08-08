@@ -31,7 +31,7 @@ class Start
         puts "Game added successfully\n"
       },
       '10' => -> {
-        app.save_data
+        @app.save_data
         puts 'App is exiting. Goodbye!' 
       }
     }
