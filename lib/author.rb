@@ -24,4 +24,8 @@ class Author < Item
     @items << item
     item.add_author(self)
   end
+
+  def full_name
+    "#{@first_name} #{@last_name}"
+  end
 end

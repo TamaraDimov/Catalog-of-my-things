@@ -10,8 +10,7 @@ class App
   def initialize
     @games = []
     @authors = []
-    @games_creator = GameCreator.new(@games)
-    # @authors_creator = AuthorsCreator.new(@authors)    
+    @games_creator = GameCreator.new(@games, @authors)
   end
   
   def list_all_books; end
