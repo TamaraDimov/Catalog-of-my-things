@@ -50,7 +50,6 @@ class Start
       else
         puts 'Sorry, the provided option does not exist'
       end
-
       puts ' '
     end
   end
