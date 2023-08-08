@@ -27,7 +27,6 @@ class Item
       id: @id,
       publish_date: @publish_date.to_s,
       archived: @archived
-      # author_ids: @authors.id
     }
   end
 end

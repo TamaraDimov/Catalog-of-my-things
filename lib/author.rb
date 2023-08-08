@@ -4,9 +4,9 @@ class Author < Item
   attr_accessor :first_name, :last_name, :items
   attr_reader :id
 
-  def initialize(first_name, last_name, items)
+  def initialize(first_name, last_name, items, id: 0)
     super(publish_date)
-    @id = Random.rand(1..1000)
+    @id = id.zero? ? rand(1000..10_000) : id
     @first_name = first_name
     @last_name = last_name
     @items = items
@@ -14,6 +14,7 @@ class Author < Item
 
   def to_h
     {
+      id: @id,
       first_name: @first_name,
       last_name: @last_name,
       items: @items.to_h
