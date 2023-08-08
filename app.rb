@@ -1,19 +1,38 @@
+require_relative 'book'
+require_relative 'item'
+require_relative 'start'
+require 'json'
+
 class App
-  def list_all_books; end
+  attr_accessor :books, :labels, :authors
 
-  def list_all_music_albums; end
+  def initialize
+    @books = []
+    @labels = []
+    @authors = []
+  end
 
-  def list_of_games; end
+  def add_a_book
+    print 'publish_date: '
+    publish_date = gets.chomp
+    print 'publisher: '
+    publisher = gets.chomp
+    puts 'Please enter the cover state'
+    cover_state = gets.chomp
+    book = Book.new(nil, publish_date, publisher, cover_state)
+    @books << book
+  end
 
-  def list_all_labels; end
+  def list_all_books
+    return 'Book list is empty' if @books.empty?
 
-  def list_all_authors; end
-
-  def list_all_sources; end
-
-  def add_a_book; end
-
-  def add_a_music_album; end
-
-  def add_a_game; end
+    @books.each_with_index do |book, index|
+      puts "#{index + 1}. "
+      # puts "   Authors: #{book.authors.join(', ')}"
+      puts "   Publish Date: #{book.publish_date}"
+      puts "   Publisher: #{book.publisher}"
+      puts "   Cover State: #{book.cover_state}"
+      puts
+    end
+  end
 end
