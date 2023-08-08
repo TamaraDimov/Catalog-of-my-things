@@ -10,6 +10,14 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
+  def to_h
+    {
+      publish_date: @publish_date,
+      multiplayer: @multiplayer,
+      last_played_at: @last_played_at
+    }
+  end
+
   def two_years
     two_years_ago = Time.now - 2.years
     return true if @last_played_at >= two_years_ago
