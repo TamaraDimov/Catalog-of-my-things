@@ -2,6 +2,7 @@ require_relative 'lib/utilities/load'
 require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
+require_relative 'lib/author_lister'
 require 'json'
 require 'fileutils'
 
@@ -14,6 +15,7 @@ class App
     @authors = []
     load_data
     @games_lister = GameLister.new(@games)
+    @authors_lister = AuthorLister.new(@authors)
     @games_creator = GameCreator.new(@games, @authors)
     
   end
@@ -28,7 +30,9 @@ class App
 
   def list_all_labels; end
 
-  def list_all_authors; end
+  def list_all_authors
+    @authors_lister.list_all_authors
+  end
 
   def list_all_sources; end
 
@@ -47,7 +51,7 @@ class App
 
   def load_data
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
-    # @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
+    @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
   end
 
 end
