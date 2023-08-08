@@ -2,7 +2,6 @@ require_relative '../item'
 require_relative '../lib/music_album'
 require 'date'
 
-
 RSpec.describe MusicAlbum do
   describe '#can_be_archived?' do
     context 'when the album is on Spotify and the publish date is in the past' do
