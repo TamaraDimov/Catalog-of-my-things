@@ -1,5 +1,3 @@
-require_relative 'lib/utilities/load'
-require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
 require_relative 'lib/author_lister'
@@ -7,7 +5,6 @@ require_relative 'book'
 require_relative 'item'
 require_relative 'start'
 require_relative 'label'
-require 'json'
 require 'json'
 require 'fileutils'
 
@@ -20,7 +17,6 @@ class App
   def initialize
     @books = []
     @labels = []
-    @authors = []
     @games = []
     @authors = []
     load_data
@@ -71,8 +67,7 @@ class App
       puts "   Color: #{label.color}"
       puts
     end
-
-  def list_all_music_albums; end
+  end
 
   def list_of_games
     @games_lister.list_all_games
@@ -81,10 +76,6 @@ class App
   def list_all_authors
     @authors_lister.list_all_authors
   end
-
-  def list_all_sources; end
-
-  def add_a_music_album; end
 
   def add_a_game
     @games_creator.create_game
