@@ -16,7 +16,7 @@ class MusicAlbumCreator
     genre = find_or_create_genre(genre_name)
 
     create_new_album(publish_date, title, on_spotify, genre)
-    puts "Created album: Album title: #{title}, Publish date: #{publish_date}, Genre: #{genre_name}"
+    puts "Created album: Album title: #{title}, Publish date: #{publish_date}"
   rescue ArgumentError => e
     puts "Error: #{e.message}"
   end
