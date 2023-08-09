@@ -8,6 +8,7 @@ class Item
     @archived = archived
     @authors = []
     @genre = nil
+    @label = nil
   end
 
   def can_be_archived?
@@ -30,4 +31,6 @@ class Item
       archived: @archived
     }
   end
+
+  attr_writer :label
 end
