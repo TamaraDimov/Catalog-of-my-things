@@ -25,7 +25,9 @@ class App
 
   def list_all_books; end
 
-  def list_all_music_albums; end
+  def list_all_music_albums
+    puts 'All music albums'
+  end
 
   def list_of_games
     @games_lister.list_all_games
