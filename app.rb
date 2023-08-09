@@ -3,6 +3,7 @@ require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
 require_relative 'lib/author_lister'
+require_relative 'lib/music_album_creator.rb'
 require 'json'
 require 'fileutils'
 
@@ -13,31 +14,31 @@ class App
   def initialize
     @games = []
     @authors = []
+    @music_albums = []
     load_data
     @games_lister = GameLister.new(@games)
     @authors_lister = AuthorLister.new(@authors)
     @games_creator = GameCreator.new(@games, @authors)
+    @music_album_creator = MusicAlbumCreator.new(@music_albums, @genres)
   end
 
   def list_all_books; end
 
-  def list_all_music_albums; end
+  def list_all_music_albums
+    
+  end
 
   def list_of_games
     @games_lister.list_all_games
   end
 
-  def list_all_labels; end
-
   def list_all_authors
     @authors_lister.list_all_authors
   end
 
-  def list_all_sources; end
-
-  def add_a_book; end
-
-  def add_a_music_album; end
+  def add_a_music_album
+    @music_album_creator.create_album
+  end
 
   def add_a_game
     @games_creator.create_game
