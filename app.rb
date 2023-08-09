@@ -100,8 +100,8 @@ class App
   def load_data
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
-    # @books = Load.new(BOOKS_FILE, :load_books_from_json).execute || []
-    # @labels = Load.new(LABELS_FILE, :load_labels_from_json).execute || []
+    @books = Load.new(BOOKS_FILE, :load_books_from_json).execute || []
+    @labels = Load.new(LABELS_FILE, :load_labels_from_json).execute || []
 
   end
 end

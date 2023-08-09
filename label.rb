@@ -20,7 +20,7 @@ class Label < Item
       id: @id,
       title: @title.to_s,
       color: @color.to_s,
-      items: @items.to_s
+      items: @items.to_h
     }
   end
 end
