@@ -6,9 +6,18 @@ class Genre < Item
 
   def initialize(name)
     super(publish_date)
-    @id = Random.rand(1..1000)
+    @id = id.zero? ? rand(1000..10_000) : id
     @name = name
     @items = []
+  end
+
+  def to_h
+    {
+      id: @id,
+      publish_date: @publish_date,
+      name: @name,
+      items: @items.to_h
+    }
   end
 
   def add_item(item)

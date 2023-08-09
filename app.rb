@@ -14,6 +14,7 @@ require 'fileutils'
 class App
   GAMES_FILE = './data/games.json'.freeze
   AUTHORS_FILE = './data/authors.json'.freeze
+  MUSICALBUM_FILE = './data/music_albums.json'.freeze
 
   attr_accessor :books, :labels, :authors
 
@@ -64,7 +65,16 @@ class App
     end
   end
 
-  def list_all_music_albums; end
+  def list_all_music_albums
+    return 'Book list is empty' if @music_albums.empty?
+
+    @music_albums.each_with_index do |album, index|
+      print "#{index + 1}. "
+      print "   Album title: #{album.title}"
+      print "   Publish Date: #{album.publish_date}"
+      puts
+    end
+  end
 
   def list_all_labels
     return 'labels list is empty' if @labels.empty?
@@ -96,10 +106,12 @@ class App
   def save_data
     Save.new(@games.map(&:to_h), GAMES_FILE).execute
     Save.new(@authors.map(&:to_h), AUTHORS_FILE).execute
+    Save.new(@music_albums.map(&:to_h), MUSICALBUM_FILE).execute
   end
 
   def load_data
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
+    @music_albums = Load.new(MUSICALBUM_FILE, :load_music_albums_from_json).execute || []
   end
 end

@@ -22,3 +22,14 @@ CREATE TABLE authors (
   first_name VARCHAR(225),
   last_name VARCHAR(225)
 );
+
+CREATE TABLE music_albums (
+  id INT PRIMARY KEY,
+  on_spotify BOOLEAN,
+  FOREIGN KEY (id) REFERENCES items(id)
+);
+
+CREATE TABLE genres (
+  id INT PRIMARY KEY,
+  name VARCHAR(255)
+);
