@@ -1,3 +1,5 @@
+require_relative 'lib/utilities/load'
+require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
 require_relative 'lib/author_lister'
