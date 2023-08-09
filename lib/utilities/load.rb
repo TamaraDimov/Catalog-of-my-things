@@ -36,7 +36,7 @@ class Load
       id: data['id']
     )
   end
-  
+
   def load_labels_from_json(data)
     Label.new(
       data['title'],
@@ -45,5 +45,4 @@ class Load
       id: data['id']
     )
   end
-  
 end

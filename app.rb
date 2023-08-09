@@ -103,7 +103,6 @@ class App
     Save.new(@authors.map(&:to_h), AUTHORS_FILE).execute
     Save.new(@books.map(&:to_h), BOOKS_FILE).execute
     Save.new(@labels.map(&:to_h), LABELS_FILE).execute
-
   end
 
   def load_data
@@ -111,6 +110,5 @@ class App
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
     @books = Load.new(BOOKS_FILE, :load_books_from_json).execute || []
     @labels = Load.new(LABELS_FILE, :load_labels_from_json).execute || []
-
   end
 end
