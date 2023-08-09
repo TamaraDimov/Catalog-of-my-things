@@ -1,17 +1,26 @@
 require_relative 'item'
 
-class Label
+class Label < Item
   attr_accessor :id, :title, :color, :items
 
-  def initialize(id, title, color)
-    @id = id
+  def initialize(title, color, items, id:0)
+    @id = id.zero? ? rand(1000..10_000) : id
     @title = title
     @color = color
-    @items = []
+    @items = items
   end
 
   def add_item(item)
     @items << item
     item.label = self
+  end
+
+  def to_h
+    {
+      id: @id,
+      title: @title.to_s,
+      color: @color.to_s,
+      items: @items.to_s
+    }
   end
 end

@@ -26,4 +26,22 @@ class Load
       id: data['id']
     )
   end
+
+  # def load_books_from_json(data)
+  #   Book.new(
+  #     data['publisher'],
+  #     data['cover_state'],
+  #     Item.new(data['items']['publish_date'], archived: data['items']['archived'], id: data['items']['id']),
+  #     id: data['id']
+  #   )
+  # end
+
+  # def load_labels_from_json(data)
+  #   Book.new(
+  #     data['title'],
+  #     data['color'],
+  #     Item.new(data['items'], id: data['items']['id']),
+  #     id: data['id']
+  #   )
+  # end
 end

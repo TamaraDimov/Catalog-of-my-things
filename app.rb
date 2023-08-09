@@ -1,3 +1,5 @@
+require_relative 'lib/utilities/load'
+require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
 require_relative 'lib/author_lister'
@@ -7,10 +9,15 @@ require_relative 'start'
 require_relative 'label'
 require 'json'
 require 'fileutils'
+require 'date'
 
 class App
   GAMES_FILE = './data/games.json'.freeze
   AUTHORS_FILE = './data/authors.json'.freeze
+  BOOKS_FILE = './data/books.json'.freeze
+  LABELS_FILE = './data/labels.json'.freeze
+
+
 
   attr_accessor :books, :labels, :authors
 
@@ -35,8 +42,9 @@ class App
   end
 
   def add_a_book
-    print 'Publish_date: '
+    print 'Publish_date (YYYY-MM-DD): '
     publish_date = gets.chomp
+    Date.parse(publish_date)
     print 'publisher: '
     publisher = gets.chomp
     puts 'Please enter the cover state'
@@ -84,10 +92,16 @@ class App
   def save_data
     Save.new(@games.map(&:to_h), GAMES_FILE).execute
     Save.new(@authors.map(&:to_h), AUTHORS_FILE).execute
+    Save.new(@books.map(&:to_h), BOOKS_FILE).execute
+    Save.new(@labels.map(&:to_h), LABELS_FILE).execute
+
   end
 
   def load_data
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
+    # @books = Load.new(BOOKS_FILE, :load_books_from_json).execute || []
+    # @labels = Load.new(LABELS_FILE, :load_labels_from_json).execute || []
+
   end
 end
