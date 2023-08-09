@@ -30,7 +30,10 @@ class Start
         @app.add_a_game
         puts "Game added successfully\n"
       },
-      '10' => -> { puts 'App is exiting. Goodbye!' }
+      '10' => lambda {
+        @app.save_data
+        puts 'App is exiting. Goodbye!'
+      }
     }
   end
 
@@ -47,7 +50,6 @@ class Start
       else
         puts 'Sorry, the provided option does not exist'
       end
-
       puts ' '
     end
   end

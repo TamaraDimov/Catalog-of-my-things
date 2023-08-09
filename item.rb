@@ -2,8 +2,8 @@ class Item
   attr_accessor :publish_date, :archived, :authors, :genre
   attr_reader :id
 
-  def initialize(publish_date, archived: false)
-    @id = Random.rand(1..1000) # Guys, modified id because we need to have an id generated here
+  def initialize(publish_date, archived: false, id: 0)
+    @id = id.zero? ? rand(1..1000) : id
     @publish_date = publish_date
     @archived = archived
     @authors = []
@@ -21,5 +21,13 @@ class Item
   def add_author(author)
     @authors << author
     author.items << self unless author.items.include?(self)
+  end
+
+  def to_h
+    {
+      id: @id,
+      publish_date: @publish_date.to_s,
+      archived: @archived
+    }
   end
 end
