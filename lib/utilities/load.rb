@@ -30,5 +30,4 @@ class Load
   def load_music_albums_from_json(data)
     MusicAlbum.new(data['publish_date'], data['title'], on_spotify: data['on_spotify'])
   end
-  
 end
