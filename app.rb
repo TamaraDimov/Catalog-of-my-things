@@ -17,8 +17,6 @@ class App
   BOOKS_FILE = './data/books.json'.freeze
   LABELS_FILE = './data/labels.json'.freeze
 
-
-
   attr_accessor :books, :labels, :authors
 
   def initialize
