@@ -5,8 +5,18 @@ class MusicAlbum < Item
 
   def initialize(publish_date, title, on_spotify: false)
     super(publish_date)
+    @id = id.zero? ? rand(1000..10_000) : id
     @title = title
     @on_spotify = on_spotify
+  end
+
+  def to_h
+    {
+      id: @id,
+      publish_date: @publish_date,
+      title: @title,
+      on_spotify: @on_spotify
+    }
   end
 
   def can_be_archived?

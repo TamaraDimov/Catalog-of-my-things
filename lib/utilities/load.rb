@@ -47,4 +47,8 @@ class Load
   def load_items_from_json(data)
     Item.new(data['publish_date'], archived: data['archived'], id: data['id'])
   end
+
+  def load_music_albums_from_json(data)
+    MusicAlbum.new(data['publish_date'], data['title'], on_spotify: data['on_spotify'])
+  end
 end

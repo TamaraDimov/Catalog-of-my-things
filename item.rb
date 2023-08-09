@@ -7,8 +7,8 @@ class Item
     @publish_date = publish_date
     @archived = archived
     @authors = []
-    @genre = nil
     @label = nil
+    @genre = []
   end
 
   def can_be_archived?

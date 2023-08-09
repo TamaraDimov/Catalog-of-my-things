@@ -29,7 +29,6 @@ CREATE TABLE labels (
   color VARCHAR(50) NOT NULL
 );
 
-
 CREATE TABLE books (
   id              INT PRIMARY KEY,
   publish_date    TIMESTAMP NOT NULL DEFAULT DATE,
@@ -40,11 +39,20 @@ CREATE TABLE books (
 FOREIGN KEY(label_id) REFERENCES labels(id)
 );
 
-
 CREATE TABLE label_books (
   id INT PRIMARY KEY,
   label_id INT NOT NULL,
   book_id INT NOT NULL,
   CONSTRAINT fk_label FOREIGN KEY(label_id) REFERENCES labels(id),
   CONSTRAINT fk_book FOREIGN KEY(book_id) REFERENCES books(id)
+
+CREATE TABLE music_albums (
+  id INT PRIMARY KEY,
+  on_spotify BOOLEAN,
+  FOREIGN KEY (id) REFERENCES items(id)
+);
+
+CREATE TABLE genres (
+  id INT PRIMARY KEY,
+  name VARCHAR(255)
 );
