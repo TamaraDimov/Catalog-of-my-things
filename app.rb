@@ -28,7 +28,6 @@ class App
     @items = []
     @music_albums = []
     @genres = []
-    
     load_data
     @games_lister = GameLister.new(@games)
     @authors_lister = AuthorLister.new(@authors)
