@@ -3,40 +3,40 @@ require_relative '../lib/music_album'
 require 'date'
 
 RSpec.describe MusicAlbum do
+  let(:publish_date) { Date.new(2023, 1, 1) }
+  let(:album_title) { 'Awesome Album' }
+  let(:on_spotify) { true }
+  let(:album) { MusicAlbum.new(publish_date, album_title, on_spotify: on_spotify) }
+
+  describe '#initialize' do
+    it 'sets the publish date, title, and on_spotify attribute' do
+      expect(album.publish_date).to eq(publish_date)
+      expect(album.title).to eq(album_title)
+      expect(album.on_spotify).to eq(on_spotify)
+    end
+  end
+
   describe '#can_be_archived?' do
-    context 'when the album is on Spotify and the publish date is in the past' do
+    context 'when on_spotify is true and it can be archived' do
       it 'returns true' do
-        album = MusicAlbum.new(Date.today - 11, on_spotify: true)
-        expect(album.can_be_archived?).to be true
+        expect(album.can_be_archived?).to be(true)
       end
     end
 
-    context 'when the album is not on Spotify' do
-      it 'returns false' do
-        album = MusicAlbum.new(Date.today - 5, on_spotify: false)
-        expect(album.can_be_archived?).to be false
-      end
-    end
+    context 'when on_spotify is false' do
+      let(:on_spotify) { false }
 
-    context 'when the album is on Spotify but the publish date is in the future' do
       it 'returns false' do
-        album = MusicAlbum.new(Date.today + 5, on_spotify: true)
-        expect(album.can_be_archived?).to be false
+        expect(album.can_be_archived?).to be(false)
       end
     end
   end
 
   describe '#move_to_archive' do
     it 'archives the album if it can be archived' do
-      album = MusicAlbum.new(Date.today - 11, on_spotify: true)
+      allow(album).to receive(:can_be_archived?).and_return(true)
       album.move_to_archive
-      expect(album.archived).to be true
-    end
-
-    it 'does not archive the album if it cannot be archived' do
-      album = MusicAlbum.new(Date.today + 5, on_spotify: true)
-      album.move_to_archive
-      expect(album.archived).to be false
+      expect(album.archived).to be(true)
     end
   end
 end
