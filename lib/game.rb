@@ -3,11 +3,21 @@ require_relative '../item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date, multiplayer: true, last_played_at: Time.now)
+  def initialize(publish_date, multiplayer: true, last_played_at: Time.now, id: 0)
     super(publish_date)
+    @id = id.zero? ? rand(1000..10_000) : id
     @publish_date = publish_date
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+  end
+
+  def to_h
+    {
+      id: @id,
+      publish_date: @publish_date,
+      multiplayer: @multiplayer,
+      last_played_at: @last_played_at
+    }
   end
 
   def two_years
