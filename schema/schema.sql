@@ -9,3 +9,10 @@ CREATE TABLE items (
   FOREIGN KEY (label_id) REFERENCES labels(id),
   FOREIGN KEY (author_id) REFERENCES authors(id),
 );
+
+CREATE TABLE games (
+  id INT PRIMARY KEY,
+  multiplayer BOOLEAN,
+  last_played_at DATE,
+  FOREIGN KEY (id) REFERENCES items(id)
+);
