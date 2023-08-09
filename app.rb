@@ -64,8 +64,7 @@ class App
     end
   end
 
-  def list_all_music_albums
-    puts 'All music albums'
+  def list_all_music_albums; end
 
   def list_all_labels
     return 'labels list is empty' if @labels.empty?
@@ -88,7 +87,8 @@ class App
 
   def add_a_music_album
     @music_album_creator.create_album
-  end 
+  end
+
   def add_a_game
     @games_creator.create_game
   end
