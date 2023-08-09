@@ -38,11 +38,13 @@ class Load
   end
 
   def load_labels_from_json(data)
-    Label.new(
-      data['title'],
-      data['color'],
-      Item.new(data['items']['publish_date'], archived: data['items']['archived'], id: data['items']['id']),
-      id: data['id']
-    )
+    items = []
+    items = data['items'].map { |item_data| load_items_from_json(item_data) } if data['items'].is_a?(Array)
+
+    Label.new(data['title'], data['color'], items, id: data['id'])
+  end
+
+  def load_items_from_json(data)
+    Item.new(data['publish_date'], archived: data['archived'], id: data['id'])
   end
 end

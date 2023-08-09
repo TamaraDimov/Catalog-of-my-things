@@ -4,7 +4,7 @@ class Label < Item
   attr_accessor :id, :title, :color, :items
 
   def initialize(title, color, items, id: 0)
-    super()
+    super('')
     @id = id.zero? ? rand(1000..10_000) : id
     @title = title
     @color = color
@@ -21,7 +21,7 @@ class Label < Item
       id: @id,
       title: @title,
       color: @color,
-      items: @items.to_h
+      items: @items.map(&:to_h)
     }
   end
 end

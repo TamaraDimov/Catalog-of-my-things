@@ -40,8 +40,8 @@ class App
     title = gets.chomp
     print 'Color: '
     color = gets.chomp
-    items = create_item(publish_date)
-    label = Label.new(title, color, items)
+    item = create_item(publish_date)
+    label = Label.new(title, color, [item]) # Pass the item as an array
     @labels << label
   end
 
@@ -68,7 +68,7 @@ class App
     return 'Book list is empty' if @books.empty?
 
     @books.each_with_index do |book, index|
-      puts "#{index + 1}. "
+      puts "#{index + 1}: "
       puts "   Publish Date: #{book.publish_date}"
       puts "   Publisher: #{book.publisher}"
       puts "   Cover State: #{book.cover_state}"
@@ -82,10 +82,15 @@ class App
     return 'labels list is empty' if @labels.empty?
 
     @labels.each_with_index do |label, index|
-      puts "#{index + 1}. "
+      puts "#{index + 1}: "
       puts "   Title: #{label.title} "
       puts "   Color: #{label.color}"
-      puts "   Item Id: #{label.items.id}"
+      puts '   Item Ids:'
+
+      label.items.each do |item|
+        puts "      #{item.id}"
+      end
+
       puts
     end
   end
