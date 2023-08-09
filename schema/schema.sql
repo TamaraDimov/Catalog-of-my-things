@@ -16,3 +16,9 @@ CREATE TABLE games (
   last_played_at DATE,
   FOREIGN KEY (id) REFERENCES items(id)
 );
+
+CREATE TABLE authors (
+  id INT PRIMARY KEY,
+  first_name VARCHAR(225),
+  last_name VARCHAR(225)
+);
