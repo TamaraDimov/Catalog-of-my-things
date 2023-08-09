@@ -3,6 +3,7 @@ require_relative 'lib/utilities/save'
 require_relative 'lib/game_creator'
 require_relative 'lib/game_lister'
 require_relative 'lib/author_lister'
+require_relative 'lib/music_album_creator'
 require_relative 'book'
 require_relative 'item'
 require_relative 'start'
@@ -27,10 +28,14 @@ class App
     @games = []
     @authors = []
     @items = []
+    @music_albums = []
+    @genres = []
+    
     load_data
     @games_lister = GameLister.new(@games)
     @authors_lister = AuthorLister.new(@authors)
     @games_creator = GameCreator.new(@games, @authors)
+    @music_album_creator = MusicAlbumCreator.new(@music_albums, @genres)
   end
 
   def add_label(publish_date)
@@ -74,6 +79,8 @@ class App
     end
   end
 
+  def list_all_music_albums; end
+
   def list_all_labels
     return 'labels list is empty' if @labels.empty?
 
@@ -92,6 +99,10 @@ class App
 
   def list_all_authors
     @authors_lister.list_all_authors
+  end
+
+  def add_a_music_album
+    @music_album_creator.create_album
   end
 
   def add_a_game
