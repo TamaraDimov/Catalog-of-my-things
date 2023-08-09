@@ -22,7 +22,7 @@ class Game < Item
 
   def two_years
     two_years_ago = Time.now - 2.years
-    return true if @last_played_at >= two_years_ago
+    true if @last_played_at >= two_years_ago
   end
 
   def can_be_archived?
