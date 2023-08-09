@@ -26,18 +26,20 @@ class App
     @labels = []
     @games = []
     @authors = []
+    @items = []
     load_data
     @games_lister = GameLister.new(@games)
     @authors_lister = AuthorLister.new(@authors)
     @games_creator = GameCreator.new(@games, @authors)
   end
 
-  def add_label
+  def add_label(publish_date)
     print 'Title: '
     title = gets.chomp
     print 'Color: '
     color = gets.chomp
-    label = Label.new(nil, title, color)
+    items = create_item(publish_date)
+    label = Label.new(title, color, items)
     @labels << label
   end
 
@@ -49,9 +51,15 @@ class App
     publisher = gets.chomp
     puts 'Please enter the cover state'
     cover_state = gets.chomp
-    book = Book.new(nil, publish_date, publisher, cover_state)
+    book = Book.new(publish_date, false, publisher, cover_state)
     @books << book
-    add_label
+    add_label(publish_date)
+  end
+
+  def create_item(publish_date)
+    items = Item.new(publish_date)
+    @items << items
+    items
   end
 
   def list_all_books
@@ -73,6 +81,7 @@ class App
       puts "#{index + 1}. "
       puts "   Title: #{label.title} "
       puts "   Color: #{label.color}"
+      puts "   Item Id: #{label.items.id}"
       puts
     end
   end

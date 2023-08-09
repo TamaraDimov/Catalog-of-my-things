@@ -17,9 +17,9 @@ class Book < Item
   def to_h
     {
       id: @id,
-      publish_date: @publish_date.to_s,
-      publisher: @publisher.to_s,
-      cover_state: @cover_state.to_s,
+      publish_date: @publish_date,
+      publisher: @publisher,
+      cover_state: @cover_state,
     }
   end
 end
