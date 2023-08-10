@@ -1,4 +1,4 @@
-require './Start'
+require './start'
 
 class Main
   def options
