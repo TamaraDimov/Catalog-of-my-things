@@ -10,10 +10,13 @@ require_relative 'start'
 require_relative 'label'
 require 'json'
 require 'fileutils'
+require 'date'
 
 class App
   GAMES_FILE = './data/games.json'.freeze
   AUTHORS_FILE = './data/authors.json'.freeze
+  BOOKS_FILE = './data/books.json'.freeze
+  LABELS_FILE = './data/labels.json'.freeze
   MUSICALBUM_FILE = './data/music_albums.json'.freeze
 
   attr_accessor :books, :labels, :authors
@@ -23,6 +26,7 @@ class App
     @labels = []
     @games = []
     @authors = []
+    @items = []
     @music_albums = []
     @genres = []
     load_data
@@ -32,32 +36,40 @@ class App
     @music_album_creator = MusicAlbumCreator.new(@music_albums, @genres)
   end
 
-  def add_label
+  def add_label(publish_date)
     print 'Title: '
     title = gets.chomp
     print 'Color: '
     color = gets.chomp
-    label = Label.new(nil, title, color)
+    item = create_item(publish_date)
+    label = Label.new(title, color, [item]) # Pass the item as an array
     @labels << label
   end
 
   def add_a_book
-    print 'Publish_date: '
+    print 'Publish_date (YYYY-MM-DD): '
     publish_date = gets.chomp
+    Date.parse(publish_date)
     print 'publisher: '
     publisher = gets.chomp
     puts 'Please enter the cover state'
     cover_state = gets.chomp
-    book = Book.new(nil, publish_date, publisher, cover_state)
+    book = Book.new(publish_date, false, publisher, cover_state)
     @books << book
-    add_label
+    add_label(publish_date)
+  end
+
+  def create_item(publish_date)
+    items = Item.new(publish_date)
+    @items << items
+    items
   end
 
   def list_all_books
     return 'Book list is empty' if @books.empty?
 
     @books.each_with_index do |book, index|
-      puts "#{index + 1}. "
+      puts "#{index + 1}: "
       puts "   Publish Date: #{book.publish_date}"
       puts "   Publisher: #{book.publisher}"
       puts "   Cover State: #{book.cover_state}"
@@ -80,9 +92,15 @@ class App
     return 'labels list is empty' if @labels.empty?
 
     @labels.each_with_index do |label, index|
-      puts "#{index + 1}. "
+      puts "#{index + 1}: "
       puts "   Title: #{label.title} "
       puts "   Color: #{label.color}"
+      puts '   Item Ids:'
+
+      label.items.each do |item|
+        puts "      #{item.id}"
+      end
+
       puts
     end
   end
@@ -106,12 +124,16 @@ class App
   def save_data
     Save.new(@games.map(&:to_h), GAMES_FILE).execute
     Save.new(@authors.map(&:to_h), AUTHORS_FILE).execute
+    Save.new(@books.map(&:to_h), BOOKS_FILE).execute
+    Save.new(@labels.map(&:to_h), LABELS_FILE).execute
     Save.new(@music_albums.map(&:to_h), MUSICALBUM_FILE).execute
   end
 
   def load_data
     @games = Load.new(GAMES_FILE, :load_games_from_json).execute || []
     @authors = Load.new(AUTHORS_FILE, :load_authors_from_json).execute || []
+    @books = Load.new(BOOKS_FILE, :load_books_from_json).execute || []
+    @labels = Load.new(LABELS_FILE, :load_labels_from_json).execute || []
     @music_albums = Load.new(MUSICALBUM_FILE, :load_music_albums_from_json).execute || []
   end
 end

@@ -23,6 +23,29 @@ CREATE TABLE authors (
   last_name VARCHAR(225)
 );
 
+CREATE TABLE labels (
+  id INT PRIMARY KEY,
+  title VARCHAR(50) NOT NULL,
+  color VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE books (
+  id              INT PRIMARY KEY,
+  publish_date    TIMESTAMP NOT NULL DEFAULT DATE,
+  archived        BOOLEAN NOT NULL DEFAULT FALSE,
+  publisher       VARCHAR(50) NOT NULL,
+  cover_state     VARCHAR(20) NOT NULL,
+  label_id        INT,
+FOREIGN KEY(label_id) REFERENCES labels(id)
+);
+
+CREATE TABLE label_books (
+  id INT PRIMARY KEY,
+  label_id INT NOT NULL,
+  book_id INT NOT NULL,
+  CONSTRAINT fk_label FOREIGN KEY(label_id) REFERENCES labels(id),
+  CONSTRAINT fk_book FOREIGN KEY(book_id) REFERENCES books(id)
+
 CREATE TABLE music_albums (
   id INT PRIMARY KEY,
   on_spotify BOOLEAN,

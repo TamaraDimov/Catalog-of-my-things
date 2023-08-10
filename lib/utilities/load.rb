@@ -27,6 +27,27 @@ class Load
     )
   end
 
+  def load_books_from_json(data)
+    Book.new(
+      data['publish_date'],
+      data['archived'],
+      data['publisher'],
+      data['cover_state'],
+      id: data['id']
+    )
+  end
+
+  def load_labels_from_json(data)
+    items = []
+    items = data['items'].map { |item_data| load_items_from_json(item_data) } if data['items'].is_a?(Array)
+
+    Label.new(data['title'], data['color'], items, id: data['id'])
+  end
+
+  def load_items_from_json(data)
+    Item.new(data['publish_date'], archived: data['archived'], id: data['id'])
+  end
+
   def load_music_albums_from_json(data)
     MusicAlbum.new(data['publish_date'], data['title'], on_spotify: data['on_spotify'])
   end

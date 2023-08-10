@@ -99,7 +99,7 @@
 
 ### Usage
 
-> Run the code
+> Run the code ruby main.rb
 
 ### Run tests
 

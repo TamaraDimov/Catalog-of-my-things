@@ -7,6 +7,7 @@ class Item
     @publish_date = publish_date
     @archived = archived
     @authors = []
+    @label = nil
     @genre = []
   end
 
@@ -30,4 +31,6 @@ class Item
       archived: @archived
     }
   end
+
+  attr_writer :label
 end
