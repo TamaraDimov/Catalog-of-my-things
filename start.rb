@@ -11,26 +11,25 @@ class Start
       '2' => -> { @app.list_all_music_albums },
       '3' => -> { @app.list_of_games },
       '4' => -> { @app.list_all_labels },
-      '5' => -> { @app.list_all_authors },
-      '6' => -> { @app.list_all_sources }
+      '5' => -> { @app.list_all_authors }
     }
   end
 
   def add_options
     {
-      '7' => lambda {
+      '6' => lambda {
         @app.add_a_book
         puts "Book added successfully\n"
       },
-      '8' => lambda {
+      '7' => lambda {
         @app.add_a_music_album
         puts "Music album added successfully\n"
       },
-      '9' => lambda {
+      '8' => lambda {
         @app.add_a_game
         puts "Game added successfully\n"
       },
-      '10' => lambda {
+      '9' => lambda {
         @app.save_data
         puts 'App is exiting. Goodbye!'
       }
@@ -46,7 +45,7 @@ class Start
       choice = gets.chomp
       if calls[choice]
         calls[choice].call
-        break if choice == '10'
+        break if choice == '9'
       else
         puts 'Sorry, the provided option does not exist'
       end

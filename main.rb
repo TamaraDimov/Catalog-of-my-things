@@ -7,7 +7,6 @@ class Main
      'List of games',
      'List all labels',
      'List all authors',
-     'List all sources',
      'Add a book',
      'Add a music album',
      'Add a game',
